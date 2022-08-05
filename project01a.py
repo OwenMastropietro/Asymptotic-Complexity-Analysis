@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 sys.setrecursionlimit(900000)
 
 # ---------------------------------------------
-# Task 1: Fibonacci Sequence and GCD-----------
+# Task 1: Fibonacci Sequence and GCD ----------
 
 # Return the kth number in the Fibonacci Sequence: Θ(phi^k) or Θ(phi^2^b)
 def fib(k):
@@ -24,7 +24,7 @@ def euclidGCD(m, n):
         return val, ops + 1
 
 # ---------------------------------------------
-# Task 2: Exponentiation-----------------------
+# Task 2: Exponentiation ----------------------
 
 # Decrease by One: Θ(n) or Θ(2^b)
 def exp1(a, n):
@@ -204,9 +204,10 @@ def print_sets():
 
 ###############################################
 # User Interface
-print("---------------------------------------------")
-task_prompt = "--\n1)Task 1: Fibonacci Sequence and GCD   \n2)Task 2: Exponentiation  \n3)Task 3: Sorting   \n4)Quit     \nPlease enter the number corresponding to your preffered task: "
-mode_prompt = "User Testing Mode - (0)\nScatter Plot Mode - (1)\nQuit              - (2)\nPlease enter the number corresponding to your preferred mode of operation: "
+# print("---------------------------------------------")
+print("=============================================")
+task_prompt = "---------------------------------------------\n1) Task 1: Fibonacci Sequence and GCD   \n2) Task 2: Exponentiation  \n3) Task 3: Sorting   \n4) Back to Mode Selection     \n\nPlease enter the number corresponding to your preffered task: "
+mode_prompt = "User Testing Mode - (0)\nScatter Plot Mode - (1) \nQuit              - (2)\n\nPlease enter the number corresponding to your preferred mode of operation: "
 # -------------------------------------
 mode = int(input(mode_prompt))
 while mode != 2:
@@ -214,7 +215,7 @@ while mode != 2:
         task = int(input(task_prompt))
         while task != 4:
             if task == 1:
-                k = int(input(" --\nPlease enter a nonnegative integer, k: "))
+                k = int(input(" ----\nPlease enter a nonnegative integer, k: "))
                 print("fib(%d): %d" %(k, fib(k)[0] )) #; print(fib(k)[0])
                 print("euclidGCD(m, n) where m(fib(k+1)) is %d and n(fib(k)) is %d equals %d" %(fib(k+1)[0], fib(k)[0], euclidGCD(fib(k+1)[0], fib(k)[0])[0])) #; print(euclidGCD(fib(k+1)[0], fib(k)[0]))
                 print("Task 1 Completed!")

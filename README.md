@@ -12,3 +12,5 @@
     2. via PyCharm
         a. Under "configurations", set script path to the python "project01a" file.
         b. Select "run" located in the upper-right corner of the application.
+
+### Idk yet
