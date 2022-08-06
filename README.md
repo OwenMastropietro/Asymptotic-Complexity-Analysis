@@ -52,7 +52,6 @@ def fib(k):
 - Add Description / What did I find?
 
 ### Task 2:
-
 **Exponentiation Algorithms for computing a<sup>x</sup>.**
 
 ***Technique 1: Decrease by One***
@@ -64,10 +63,10 @@ def exp1(a, n):
         val, basic_operation_count = exp1(a, n-1)
         return a * val, basic_operation_count + 1
 ```
-- *Recurrence Relation: M(n) = M(n-1) + 1*
+- ***Recurrence Relation:*** *M(n) = M(n-1) + 1*
     - *M(n-1) represents the number of basic operations in computing exp1(a, n-1)*
     - *+ 1 represents the additional basic operation in computing exp1(a, n-1) x a*
-- *Time Complexity: Θ(n) ==> Θ(2<sup>b</sup>)*
+- ***Time Complexity:*** *Θ(n) ==> Θ(2<sup>b</sup>)*
 
 ***Technique 2: Decrease by Constant Factor***
 ```python
@@ -82,8 +81,8 @@ def exp2(a, n):
         return a * val ** 2, basic_operation_count + 2 # Increment basic_operation_count by two due to squaring and multiplying.
 ```
 - *As per the textbook, on page 133, we are reducing the problem size by about half at the expense of one or two multiplications.*
-- *Recurrenc Relation: M(n) = M(n/2) + 1?*
-- *Time Complexity: Θ(log n)*
+- ***Recurrenc Relation:*** *M(n) = M(n/2) + 1?*
+- ***Time Complexity:*** *Θ(log n)*
 
 ***Technique 3: Divide and Conquer***
 ```python
@@ -97,13 +96,11 @@ def exp3(a, n):
         val, basic_operation_count = exp3(a, (n-1)/2)         # According to the project page, (n-1)/2. However, everywhere online uses n/2 and it does not seem to effect the result.
         return a * val * val, basic_operation_count + 2   # Increment basic_operation_count by two due to two multiplications of a * val * val.
 ```
-- **Recurrence Relation:** *M(n) = M(n/2) + 1*
-- *Time Complexity: Θ(log n) ==> Θ(n log n)?*
+- ***Recurrence Relation:*** *M(n) = M(n/2) + 1*
+- ***Time Complexity:*** *Θ(log n) ==> Θ(n log n)?*
 
 ### Task 3:
-
 **Insertion Sort**
-- *Complexity Description*
 ```python
 def insertion_sort(arr_in, n):
     basic_operation_count = 0
@@ -119,9 +116,10 @@ def insertion_sort(arr_in, n):
         i = i + 1
     return arr, basic_operation_count
 ```
+- ***Recurrence Relation:*** *here*
+- ***Time Complexity:*** *here*
 
 **Selection Sort**
-- *Complexity Description*
 ```python
 def selection_sort(arr_in, n):
     basic_operation_count = 0
@@ -139,6 +137,8 @@ def selection_sort(arr_in, n):
         i = i + 1
     return arr, basic_operation_count
 ```
+- ***Recurrence Relation:*** *here*
+- ***Time Complexity:*** *here*
 
 ## Useful Resources
 - [alt text](link)
