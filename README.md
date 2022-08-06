@@ -29,7 +29,6 @@ For this project, we were tasked with exploring the upper bounds of Euclid's Alg
 ### Task 1:
 **Implement an algorithm for computing the Greatest Common Divisor of two integers**
 ```python
-# Return gcd(m, n)
 def euclid_GCD(m, n):
     if n == 0: return m, 0
     if n == 1: return 1, 0
@@ -40,7 +39,6 @@ def euclid_GCD(m, n):
 ```
 **Implement an algorithm, that returns the k'th number in the fibonacci sequence**
 ```python
-# Return the kth number in the Fibonacci Sequence:
 def fib(k):
     if k == 0: return 0, 0
     if k == 1: return 1, 0
@@ -50,12 +48,12 @@ def fib(k):
         return val_1 + val_2, basic_ops_1 + basic_ops_2 + 1
 # Θ(phi^k) or Θ(phi^2^b)
 ```
-- c) Explore GCD(fib(k+1), fib(k))
-    - Add Description / What did I find?
+**Explore GCD(fib(k+1), fib(k))**
+- Add Description / What did I find?
 
 ### Task 2:
 
-**Exponentiation Algorithms**
+**Exponentiation Algorithms for computing a<sup>x</sup>**
 
 **Decrease by One**
 ```python
