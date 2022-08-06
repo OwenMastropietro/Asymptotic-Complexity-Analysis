@@ -120,8 +120,8 @@ def insertion_sort(arr_in, n):
 ```
 - ***Recurrence Relation:***
     - *Best: C(n) = n - 1*
-    - *Average: C(n) = n(n - 1) \over 2*
-    - *Worst: C(n) = n(n-1) \over 2*
+    - *Average: C(n) = {n(n - 1) \over 2}*
+    - *Worst: C(n) = {n(n-1) \over 2}*
 - ***Time Complexity:***
     - *Best: O(n)*
     - *Average: O(n<sup>2</sup>)*
