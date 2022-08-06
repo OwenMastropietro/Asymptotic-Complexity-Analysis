@@ -133,7 +133,6 @@ def exp3(a, n):
 - ***Time Complexity:*** *Θ(n)* [^3]
 - ***Proof:***
     - TODO
-
 - ***Asymptotic Complexity Scatter Plot:***
     - *The scatter plot we have created to display the asymptotic complexities of our implementations of the algorithms using mathplotlib*
 ![scatterplot-exp](images/scatterplot-exp.png)
