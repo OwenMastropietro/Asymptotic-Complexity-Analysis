@@ -65,10 +65,9 @@ def exp1(a, n):
         val, basic_operation_count = exp1(a, n-1)
         return a * val, basic_operation_count + 1
 ```
-- ***Recurrence Relation:*** *M(n) = M(n-1) + 1*
-    - *M(n-1) represents the number of basic operations in computing exp1(a, n-1)*
-    - *+ 1 represents the additional basic operation in computing exp1(a, n-1) x a*
+- ***Recurrence Relation:*** *M(n) = M(n-1) + 1* [^1]
 - ***Time Complexity:*** *Θ(n) ==> Θ(2<sup>b</sup>)*
+- ***TODO:*** *show work for solving recurrence relation*
 
 ***Technique 2: Decrease by Constant Factor***
 ```python
@@ -82,9 +81,22 @@ def exp2(a, n):
         val, basic_operation_count = exp2(a, (n-1) / 2)
         return a * val ** 2, basic_operation_count + 2 # Increment basic_operation_count by two due to squaring and multiplying.
 ```
-- *As per the textbook, on page 133, we are reducing the problem size by about half at the expense of one or two multiplications.*
-- ***Recurrenc Relation:*** *M(n) = M(n/2) + 1?*
+- ***Basic operation:*** *Multiplication*
+- ***Recurrenc Relation:*** *M(n) = M(n/2) + 1*
 - ***Time Complexity:*** *Θ(log n)*
+- ***Proof:***
+    Since the basic operation is not activated on M(1), we rely on M(1) = 0 for solving our recurrence relation.
+    Let n = 2^k such that 2^k / 2 = 2^(k-1).
+    M(2^k)  = M(2^(k-1)) + 1
+            = [M(2^(k-2)) + 1] + 1
+            = [M(2(k-3)) + 1] + 2
+            = M(2^(k-3)) + 3
+    Given the pattern, we assume the i'th instance of this relation can be expressed as follows:
+    M(2^k)  = M(2^(k-i)) + i where i = k
+            = M(1) + k
+    M(2^k)  = k
+    M(n)    = log n exists in Θ(n) -- Θ(2<sup>b</sup>)
+"""
 
 ***Technique 3: Divide and Conquer***
 ```python
@@ -100,6 +112,7 @@ def exp3(a, n):
 ```
 - ***Recurrence Relation:*** *M(n) = M(n/2) + 1*
 - ***Time Complexity:*** *Θ(log n) ==> Θ(n log n)?*
+- ***Proof:***
 
 ### Task 3:
 **Insertion Sort**
@@ -151,3 +164,6 @@ def selection_sort(arr_in, n):
 ## Useful Resources
 - [alt text](link)
 - [alt text](link)
+
+[^1]: Decrease by One Exponentiation The recurrence relation A(n-1) + 1 is built on A(n-1) representing the number of basic operations in computing exp_1(a, n-1) and '+ 1' representing the additional basic operation in computing a x exp1(a, n-1).
+[^2]: As per the textbook, on page 133, we are reducing the problem size by about half at the expense of one or two multiplications. This suggests that this algorithm is in Θ(log n).

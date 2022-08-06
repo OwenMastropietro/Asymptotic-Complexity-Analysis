@@ -26,47 +26,69 @@ def fib(k):
 # ---------------------------------------------
 # Task 2: Exponentiation ----------------------
 
-# Decrease by One: Θ(n) or Θ(2^b)
-def exp1(a, n):
+# Decrease by One:
+def exp_1(a, n):
     if n == 0: return 1, 0     # Note: a^0 = 1 for all values of a.
     if n == 1: return a, 0     # Note: a^1 = a for all values of a.
     else:
-        val, basic_operation_count = exp1(a, n-1)
+        val, basic_operation_count = exp_1(a, n-1)
         return a * val, basic_operation_count + 1
 """
-Basic operation: multiplication.
-Thus, M(n) = M(n-1) + 1
-* The 'M(n-1)' represents the number of basic operations/multiplications in computing exp1(a, n-1)
-* The '+ 1' represents the additional basic operation/multiplication in computing exp1(a, n-1) * a
-After solving the recurrence relation, we find M(n) = n.
-Therefore, exp1 is in Θ(n).
+Basic operation: Addition/Subtraction.
+Recurrence Relation: A(n) = A(n-1) + 1
+Time Complexity: Θ(n)
+* Proof:
+* Note the 'A(n-1)' represents the number of basic operations in computing exp_1(a, n-1).
+* Note the '+ 1' represents the additional basic operation/multiplication in computing exp_1(a, n-1) * a.
+* Since the basic operation is not activated on A(1), we rely on A(1) = 0 for solving our recurrence relation.
+* A(n) = A(n - 1) + 1
+*      = [A(n - 2) + 1] + 1
+*      = [A(n - 3) + 1] + 2
+*      = A(n - 3) + 3
+* Given the pattern, we assume the i'th instance of this relation can be expressed as follows:
+* A(n) = A(n - i) + i where i = n - 1
+*      = A(1) + n - 1
+*      = n - 1
+* A(n) = n - 1 exists in Θ(n) -- Θ(2^b)
 """
 
-# Decrease by Constant Factor: Θ(log n)
-def exp2(a, n):
+# Decrease by Constant Factor:
+def exp_2(a, n):
     if n == 0: return 1, 0      # Note: a^0 = 1 for all values of a.
     if n == 1: return a, 0      # Note: a^1 = a for all values of a.
     elif n % 2 == 0:            # If n is even:
-        val, basic_operation_count = exp2(a, n/2)
+        val, basic_operation_count = exp_2(a, n/2)
         return val ** 2, basic_operation_count + 1     # Increment basic_operation_count by one due to squaring.
     else:                       # If n is odd:
-        val, basic_operation_count = exp2(a, (n-1) / 2)
+        val, basic_operation_count = exp_2(a, (n-1) / 2)
         return a * val ** 2, basic_operation_count + 2 # Increment basic_operation_count by two due to squaring and multiplying.
 """
-As per the textbook, on page 133, we are reducing the problem size by about half at the expense of one or two multiplications.
-This suggests that this algorithm is in Θ(log n).
+Basic operation: Multiplication.
+Recurrence Relation: M(n) = M(n/2) + 1
+Time Complexity: Θ(log n)
+* Proof:
+* Since the basic operation is not activated on M(1), we rely on M(1) = 0 for solving our recurrence relation.
+* Let n = 2^k such that 2^k / 2 = 2^(k-1).
+* M(2^k) = M(2^(k-1)) + 1
+*        = [M(2^(k-2)) + 1] + 1
+*        = [M(2(k-3)) + 1] + 2
+*        = M(2^(k-3)) + 3
+* Given the pattern, we assume the i'th instance of this relation can be expressed as follows:
+* M(2^k) = M(2^(k-i)) + i where i = k
+*        = M(1) + k
+* M(2^k) = k
+* M(n)   = log n exists in Θ(n) -- Θ(2^b)
 """
 
-# Divide and Conquer: Θ(log n) ==> Θ(n log n)?
-
-def exp3(a, n):
+# Divide and Conquer: Θ(n)
+def exp_3(a, n):
     if n == 0: return 1, 0              # Note: a^0 = 1 for all values of a.
     if n == 1: return a, 0              # Note: a^1 = a for all values of a.
     elif n % 2 == 0:    # If n is even:
-        val, basic_operation_count = exp3(a, n/2)
+        val, basic_operation_count = exp_3(a, n/2)
         return val * val, basic_operation_count + 1       # Increment basic_operation_count by one due to single multiplication of val * val
     else:               # If n is odd:
-        val, basic_operation_count = exp3(a, (n-1)/2)         # According to the project page, (n-1)/2. However, everywhere online uses n/2 and it does not seem to effect the result.
+        val, basic_operation_count = exp_3(a, (n-1)/2)    # According to the project page, (n-1)/2. However, everywhere online uses n/2 and it does not seem to effect the result.
         return a * val * val, basic_operation_count + 2   # Increment basic_operation_count by two due to two multiplications of a * val * val.
 """
 Recurrence Relation:
@@ -222,12 +244,12 @@ while mode != 2:
             if task == 2:
                 a = int(input(" --\nPlease enter a value for a: "))
                 n = int(input("Please enter a value for n: "))
-                print("exp1: %d" %exp1(a, n)[0])
-                print("exp2: %d" %exp2(a, n)[0])
-                print("exp3: %d" %exp3(a, n)[0])
-                # print("exp1:"); print(exp1(a, n)[0])
-                # print("exp2:"); print(exp2(a, n)[0])
-                # print("exp3:"); print(exp3(a, n)[0])
+                print("exp_1: %d" %exp_1(a, n)[0])
+                print("exp_2: %d" %exp_2(a, n)[0])
+                print("exp_3: %d" %exp_3(a, n)[0])
+                # print("exp_1:"); print(exp_1(a, n)[0])
+                # print("exp_2:"); print(exp_2(a, n)[0])
+                # print("exp_3:"); print(exp_3(a, n)[0])
                 print("Task 2 Completed!")
             if task == 3:
                 # int conversion mayb not be needed as were calling a file name... open("data<n>.txt")
@@ -287,22 +309,22 @@ while mode != 2:
                 # Create Data
                 a = 2                                       # Choose value for a. I chose 2 because it is most prevelant in my education.
                 n = list(range(1, 24))            # Initialize a list containing values for n that will be shown on the x-axis.
-                exp1_a_to_n = []                 # Initialize an empty list the same size as n representing the y-axis.
-                exp2_a_to_n = []
-                exp3_a_to_n = []
+                exp_1_a_to_n = []                 # Initialize an empty list the same size as n representing the y-axis.
+                exp_2_a_to_n = []
+                exp_3_a_to_n = []
                 
                 for i in range(len(n)):                     # Populate empty list with the number of operations for each of the values for n... for each method of exponentiation.
-                    exp1_a_to_n.append(exp1(a, n[i])[1])       # Method 1: exp1(a, n)
-                    exp2_a_to_n.append(exp2(a, n[i])[1])       # Method 2: exp2(a, n)
-                    exp3_a_to_n.append(exp3(a, n[i])[1])       # Method 3: exp3(a, n)
+                    exp_1_a_to_n.append(exp_1(a, n[i])[1])       # Method 1: exp_1(a, n)
+                    exp_2_a_to_n.append(exp_2(a, n[i])[1])       # Method 2: exp_2(a, n)
+                    exp_3_a_to_n.append(exp_3(a, n[i])[1])       # Method 3: exp_3(a, n)
                 # Plot
                 plt.title("Computing a^n")
                 plt.xlabel("Input Size n")
                 plt.ylabel("Number of Operations")
                 # s=np.pi * 100, ... s=np.pi * 25, ...  s=np.pi * 100
-                plt.scatter(n, exp1_a_to_n, s=np.pi * 100, color = "green", alpha=1, marker="<", label="exp1")   # plot / scatter for method 1 (exp1)
-                plt.scatter(n, exp2_a_to_n, s=np.pi * 25, color = 'red', alpha=1, marker="o", label="exp2")     # plot / scatter for method 2 (exp2)
-                plt.scatter(n, exp3_a_to_n, s=np.pi * 100, color = 'blue', alpha=.20, marker=">", label="exp3")   # plot / scatter for method 3 (exp3)
+                plt.scatter(n, exp_1_a_to_n, s=np.pi * 100, color = "green", alpha=1, marker="<", label="exp_1")   # plot / scatter for method 1 (exp_1)
+                plt.scatter(n, exp_2_a_to_n, s=np.pi * 25, color = 'red', alpha=1, marker="o", label="exp_2")     # plot / scatter for method 2 (exp_2)
+                plt.scatter(n, exp_3_a_to_n, s=np.pi * 100, color = 'blue', alpha=.20, marker=">", label="exp_3")   # plot / scatter for method 3 (exp_3)
                 plt.legend(loc='upper left', shadow=True, fontsize='x-large')
                 plt.show()
             if task == 3:
