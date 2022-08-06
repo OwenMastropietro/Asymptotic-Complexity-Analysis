@@ -1,11 +1,6 @@
 # Asymptotic Complexity Analysis -- CS415 Project 1
 
-## Algorithms Reviewed
-1. Euclid's Algorithm for finding the Greatest Common Divisor, GCD.
-2. Iterative and Recursive Functions to return the n'th number in the Fibonacci sequence.
-3. Three techniques for an exponentiation function to compute a<sup>n</sup>.
-4. Selection Sort.
-5. Insertion Sort.
+![Asymptotic Complexity Graph](images/ASYMPT_COMP.jpeg)
 
 ## Contributers: 
 - Alejandro Madrigal
@@ -20,6 +15,13 @@
 1. Under "configurations", set script path to the python "project01a" file.
 2. Select "run" located in the upper-right corner of the application.
 3. Follow the prompts for entering significant data.
+
+## Algorithms Reviewed
+1. Euclid's Algorithm for finding the Greatest Common Divisor, GCD.
+2. Iterative and Recursive Functions to return the n'th number in the Fibonacci sequence.
+3. Three techniques for an exponentiation function to compute a<sup>n</sup>.
+4. Selection Sort.
+5. Insertion Sort.
 
 ## Project Description
 For this project, we were tasked with exploring the upper bounds of Euclid's Algorithm for computing the Greatest Common Divisor, GCD, exploring three different techniques for computing a<sup>2</sup>, and exploring two common sorting algorithms, insertion sort and selection sort.
