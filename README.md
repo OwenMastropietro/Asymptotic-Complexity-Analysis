@@ -85,19 +85,17 @@ def exp2(a, n):
 - ***Recurrenc Relation:*** *M(n) = M(n/2) + 1*
 - ***Time Complexity:*** *Θ(log n)*
 - ***Proof:***
-* Hello
-* Hello 1
-    Since the basic operation is not activated on M(1), we rely on M(1) = 0 for solving our recurrence relation.
-    Let n = 2^k such that 2^k / 2 = 2^(k-1).
-    M(2^k)  = M(2^(k-1)) + 1
-            = [M(2^(k-2)) + 1] + 1
-            = [M(2(k-3)) + 1] + 2
-            = M(2^(k-3)) + 3
-    Given the pattern, we assume the i'th instance of this relation can be expressed as follows:
-    M(2^k)  = M(2^(k-i)) + i where i = k
-            = M(1) + k
-    M(2^k)  = k
-    M(n)    = log n exists in Θ(n) -- Θ(2<sup>b</sup>)
+    - Since the basic operation is not activated on M(1), we rely on M(1) = 0 for solving our recurrence relation.
+    - Let n = 2^k such that 2^k / 2 = 2^(k-1).
+    - M(2^k)  = M(2^(k-1)) + 1
+    -         = [M(2^(k-2)) + 1] + 1
+    -         = [M(2(k-3)) + 1] + 2
+    -         = M(2^(k-3)) + 3
+    - Given the pattern, we assume the i'th instance of this relation can be expressed as follows:
+    - M(2^k)  = M(2^(k-i)) + i where i = k
+    -         = M(1) + k
+    - M(2^k)  = k
+    - M(n)    = log n exists in Θ(n) -- Θ(2<sup>b</sup>)
 """
 
 ***Technique 3: Divide and Conquer***
