@@ -35,8 +35,9 @@ def euclid_GCD(m, n):
     else:
         val, basic_operation_count = euclidGCD(n, m % n)
         return val, basic_operation_count + 1
-# Θ(n) --> Θ(2^b)
 ```
+- ***Time Complexity:*** *Θ(n) --> Θ(2^b)*
+
 **Implement an algorithm, that returns the k'th number in the fibonacci sequence**
 ```python
 def fib(k):
@@ -46,8 +47,9 @@ def fib(k):
         val_1, basic_ops_1 = fib(k-1)   # where val_1 = fib(k-1)[0] and basic_ops_1 = fib(k-1)[1]
         val_2, basic_ops_2 = fib(k-2)
         return val_1 + val_2, basic_ops_1 + basic_ops_2 + 1
-# Θ(phi^k) or Θ(phi^2^b)
 ```
+***Time Complexity:*** *Θ(phi^k) or Θ(phi^2^b)*
+
 **Explore GCD(fib(k+1), fib(k))**
 - Add Description / What did I find?
 
