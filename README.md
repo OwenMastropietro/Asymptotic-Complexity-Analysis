@@ -1,10 +1,11 @@
-# Various Algorithms for Asymptotic Complexity Analysis -- CS415 Project 1
+# Asymptotic Complexity Analysis -- CS415 Project 1
 
 ## Algorithms Reviewed
 1. Euclid's Algorithm for finding the Greatest Common Divisor, GCD.
 2. Iterative and Recursive Functions to return the n'th number in the Fibonacci sequence.
-5. Selection Sort
-6. Insertion Sort
+3. Three techniques for an exponentiation function to compute a<sup>n</sup>.
+4. Selection Sort.
+5. Insertion Sort.
 
 ## Contributers: 
 - Alejandro Madrigal
@@ -12,29 +13,137 @@
 
 ## Instructions To Run:
 ***CLI***
-    1. `$ python3 project01a.py`
-    2. Follow the prompts for entering significant data.
+1. `$ python3 project01a.py`
+2. Follow the prompts for entering significant data.
 ***PyCharm***
-    1. Under "configurations", set script path to the python "project01a" file.
-    2. Select "run" located in the upper-right corner of the application.
-    3. Follow the prompts for entering significant data.
+1. Under "configurations", set script path to the python "project01a" file.
+2. Select "run" located in the upper-right corner of the application.
+3. Follow the prompts for entering significant data.
 
 ## Project Description
 For this project, we were tasked with exploring the upper bounds of Euclid's Algorithm for computing the Greatest Common Divisor, GCD, exploring three different techniques for computing a<sup>2</sup>, and exploring two common sorting algorithms, insertion sort and selection sort.
 
-**Task 1: FIB & GCD**
-- a) Implement an algorithm for computing the gcd of two integers
-    - Add Code
-- b) Implement an algorithm, that returns the n'th number in the fibonacci sequence.
-    - Add Code
+### Task 1:
+**Implement an algorithm for computing the Greatest Common Divisor of two integers**
+```python
+# Return gcd(m, n)
+def euclid_GCD(m, n):
+    if n == 0: return m, 0
+    if n == 1: return 1, 0
+    else:
+        val, basic_operation_count = euclidGCD(n, m % n)
+        return val, basic_operation_count + 1
+# Θ(n) --> Θ(2^b)
+```
+**Implement an algorithm, that returns the k'th number in the fibonacci sequence**
+```python
+# Return the kth number in the Fibonacci Sequence:
+def fib(k):
+    if k == 0: return 0, 0
+    if k == 1: return 1, 0
+    else:
+        val_1, basic_ops_1 = fib(k-1)   # where val_1 = fib(k-1)[0] and basic_ops_1 = fib(k-1)[1]
+        val_2, basic_ops_2 = fib(k-2)
+        return val_1 + val_2, basic_ops_1 + basic_ops_2 + 1
+# Θ(phi^k) or Θ(phi^2^b)
+```
 - c) Explore GCD(fib(k+1), fib(k))
     - Add Description / What did I find?
 
-**Task 2: Exponentiation**
-- a) Decrease by One
-- b) Decrease by Constant Factor
-- c) Divide and Conquer
+### Task 2:
 
-**Task 3: Sorting**
-- Insertion Sort
-- Selection Sort
+**Exponentiation Algorithms**
+
+**Decrease by One**
+```python
+def exp1(a, n):
+    if n == 0: return 1, 0     # Note: a^0 = 1 for all values of a.
+    if n == 1: return a, 0     # Note: a^1 = a for all values of a.
+    else:
+        val, basic_operation_count = exp1(a, n-1)
+        return a * val, basic_operation_count + 1
+"""
+Basic operation: multiplication.
+Thus, M(n) = M(n-1) + 1
+* The 'M(n-1)' represents the number of basic operations/multiplications in computing exp1(a, n-1)
+* The '+ 1' represents the additional basic operation/multiplication in computing exp1(a, n-1) * a
+After solving the recurrence relation, we find M(n) = n.
+Therefore, exp1 is in Θ(n) Θ(2^b).
+"""
+```
+
+**Decrease by Constant Factor**
+```python
+def exp2(a, n):
+    if n == 0: return 1, 0      # Note: a^0 = 1 for all values of a.
+    if n == 1: return a, 0      # Note: a^1 = a for all values of a.
+    elif n % 2 == 0:            # If n is even:
+        val, basic_operation_count = exp2(a, n/2)
+        return val ** 2, basic_operation_count + 1     # Increment basic_operation_count by one due to squaring.
+    else:                       # If n is odd:
+        val, basic_operation_count = exp2(a, (n-1) / 2)
+        return a * val ** 2, basic_operation_count + 2 # Increment basic_operation_count by two due to squaring and multiplying.
+"""
+As per the textbook, on page 133, we are reducing the problem size by about half at the expense of one or two multiplications.
+This suggests that this algorithm is in Θ(log n).
+"""
+```
+
+**Divide and Conquer**
+```python
+def exp3(a, n):
+    if n == 0: return 1, 0              # Note: a^0 = 1 for all values of a.
+    if n == 1: return a, 0              # Note: a^1 = a for all values of a.
+    elif n % 2 == 0:    # If n is even:
+        val, basic_operation_count = exp3(a, n/2)
+        return val * val, basic_operation_count + 1       # Increment basic_operation_count by one due to single multiplication of val * val
+    else:               # If n is odd:
+        val, basic_operation_count = exp3(a, (n-1)/2)         # According to the project page, (n-1)/2. However, everywhere online uses n/2 and it does not seem to effect the result.
+        return a * val * val, basic_operation_count + 2   # Increment basic_operation_count by two due to two multiplications of a * val * val.
+"""
+Recurrence Relation:
+M(n)    =   M(n/2) + 1
+        =   M(n/4) + 1
+        =   M(n/8) + 1
+# Θ(log n) ==> Θ(n log n)?
+"""
+```
+
+### Task 3:
+
+**Insertion Sort**
+```python
+def insertion_sort(arr_in, n):
+    basic_operation_count = 0
+    arr = arr_in.copy()
+    i = 0
+    while i < n:
+        j = i
+        while j > 0 and arr[j] < arr[j-1]:
+            arr[j], arr[j-1] = arr[j-1], arr[j]
+            basic_operation_count += 1
+            j = j - 1
+        basic_operation_count += 1
+        i = i + 1
+    return arr, basic_operation_count
+```
+
+**Selection Sort**
+
+```python
+def selection_sort(arr_in, n):
+    basic_operation_count = 0
+    arr = arr_in.copy()
+    i = 0
+    while i < n-1:
+        bigIdx = 0
+        j = 1
+        while j < n-i:
+            if arr[j] > arr[bigIdx]:
+                bigIdx = j
+            basic_operation_count += 1
+            j = j + 1
+        arr[bigIdx], arr[n-i-1] = arr[n-i-1], arr[bigIdx]   # swap(arr, bigIdx, n-i-1)
+        i = i + 1
+    return arr, basic_operation_count
+```

@@ -6,22 +6,22 @@ sys.setrecursionlimit(900000)
 # ---------------------------------------------
 # Task 1: Fibonacci Sequence and GCD ----------
 
+# Return greatest common divisor of m and n: Θ(n) --> Θ(2^b)
+def euclid_GCD(m, n):
+    if n == 0: return m, 0
+    if n == 1: return 1, 0
+    else:
+        val, basic_operation_count = euclid_GCD(n, m % n)
+        return val, basic_operation_count + 1
+
 # Return the kth number in the Fibonacci Sequence: Θ(phi^k) or Θ(phi^2^b)
 def fib(k):
     if k == 0: return 0, 0
     if k == 1: return 1, 0
     else:
-        val1, ops1 = fib(k-1)   # where val1 = fib(k-1)[0] and ops1 = fib(k-1)[1]
-        val2, ops2 = fib(k-2)
-        return val1 + val2, ops1 + ops2 + 1
-
-# Return gcd(m, n): Θ(n) --> Θ(2^b)
-def euclidGCD(m, n):
-    if n == 0: return m, 0
-    if n == 1: return 1, 0
-    else:
-        val, ops = euclidGCD(n, m % n)
-        return val, ops + 1
+        val1, basic_operation_count1 = fib(k-1)   # where val1 = fib(k-1)[0] and basic_operation_count1 = fib(k-1)[1]
+        val2, basic_operation_count2 = fib(k-2)
+        return val1 + val2, basic_operation_count1 + basic_operation_count2 + 1
 
 # ---------------------------------------------
 # Task 2: Exponentiation ----------------------
@@ -31,8 +31,8 @@ def exp1(a, n):
     if n == 0: return 1, 0     # Note: a^0 = 1 for all values of a.
     if n == 1: return a, 0     # Note: a^1 = a for all values of a.
     else:
-        val, ops = exp1(a, n-1)
-        return a * val, ops + 1
+        val, basic_operation_count = exp1(a, n-1)
+        return a * val, basic_operation_count + 1
 """
 Basic operation: multiplication.
 Thus, M(n) = M(n-1) + 1
@@ -47,11 +47,11 @@ def exp2(a, n):
     if n == 0: return 1, 0      # Note: a^0 = 1 for all values of a.
     if n == 1: return a, 0      # Note: a^1 = a for all values of a.
     elif n % 2 == 0:            # If n is even:
-        val, ops = exp2(a, n/2)
-        return val ** 2, ops + 1     # Increment ops by one due to squaring.
+        val, basic_operation_count = exp2(a, n/2)
+        return val ** 2, basic_operation_count + 1     # Increment basic_operation_count by one due to squaring.
     else:                       # If n is odd:
-        val, ops = exp2(a, (n-1) / 2)
-        return a * val ** 2, ops + 2 # Increment ops by two due to squaring and multiplying.
+        val, basic_operation_count = exp2(a, (n-1) / 2)
+        return a * val ** 2, basic_operation_count + 2 # Increment basic_operation_count by two due to squaring and multiplying.
 """
 As per the textbook, on page 133, we are reducing the problem size by about half at the expense of one or two multiplications.
 This suggests that this algorithm is in Θ(log n).
@@ -63,11 +63,11 @@ def exp3(a, n):
     if n == 0: return 1, 0              # Note: a^0 = 1 for all values of a.
     if n == 1: return a, 0              # Note: a^1 = a for all values of a.
     elif n % 2 == 0:    # If n is even:
-        val, ops = exp3(a, n/2)
-        return val * val, ops + 1       # Increment ops by one due to single multiplication of val * val
+        val, basic_operation_count = exp3(a, n/2)
+        return val * val, basic_operation_count + 1       # Increment basic_operation_count by one due to single multiplication of val * val
     else:               # If n is odd:
-        val, ops = exp3(a, (n-1)/2)         # According to the project page, (n-1)/2. However, everywhere online uses n/2 and it does not seem to effect the result.
-        return a * val * val, ops + 2   # Increment ops by two due to two multiplications of a * val * val.
+        val, basic_operation_count = exp3(a, (n-1)/2)         # According to the project page, (n-1)/2. However, everywhere online uses n/2 and it does not seem to effect the result.
+        return a * val * val, basic_operation_count + 2   # Increment basic_operation_count by two due to two multiplications of a * val * val.
 """
 Recurrence Relation:
 M(n)    =   M(n/2) + 1
@@ -78,7 +78,7 @@ M(n)    =   M(n/2) + 1
 # Task 3: Sorting------------------------------
 
 def selectionSort(arr_in, n):
-    ops=0
+    basic_operation_count=0
     arr = arr_in.copy()
     i = 0
     while i < n-1:
@@ -87,25 +87,25 @@ def selectionSort(arr_in, n):
         while j < n-i:
             if arr[j] > arr[bigIdx]:
                 bigIdx = j
-            ops+=1
+            basic_operation_count+=1
             j = j + 1
         arr[bigIdx], arr[n-i-1] = arr[n-i-1], arr[bigIdx]   # swap(arr, bigIdx, n-i-1)
         i = i + 1
-    return arr, ops
+    return arr, basic_operation_count
 
 def insertionSort(arr_in, n):
-    ops=0
+    basic_operation_count=0
     arr = arr_in.copy()
     i = 0
     while i < n:
         j = i
         while j > 0 and arr[j] < arr[j-1]:
             arr[j], arr[j-1] = arr[j-1], arr[j]
-            ops+=1
+            basic_operation_count+=1
             j = j - 1
-        ops+=1
+        basic_operation_count+=1
         i = i + 1
-    return arr, ops
+    return arr, basic_operation_count
 
 
 # Loads the randomly sorted datasets
@@ -140,64 +140,64 @@ def print_sets():
     sorted_lists =[[]] * (len(n_range))
     rsorted_lists =[[]] * (len(n_range))
 
-    selectionsort_avg_ops_list = []
-    insertionsort_avg_ops_list = []
+    selectionsort_avg_basic_operation_count_list = []
+    insertionsort_avg_basic_operation_count_list = []
 
-    selectionsort_sorted_ops_list = []
-    insertionsort_sorted_ops_list = []
+    selectionsort_sorted_basic_operation_count_list = []
+    insertionsort_sorted_basic_operation_count_list = []
 
-    selectionsort_rsorted_ops_list = []
-    insertionsort_rsorted_ops_list = []
+    selectionsort_rsorted_basic_operation_count_list = []
+    insertionsort_rsorted_basic_operation_count_list = []
     
     for i in n_range:
         avg_lists[j] = load_dataset(i)
-        selectionsort_avg_ops_list.append(selectionSort(avg_lists[j], i)[1])
-        insertionsort_avg_ops_list.append(insertionSort(avg_lists[j], i)[1])
+        selectionsort_avg_basic_operation_count_list.append(selectionSort(avg_lists[j], i)[1])
+        insertionsort_avg_basic_operation_count_list.append(insertionSort(avg_lists[j], i)[1])
     
         sorted_lists[j] = load_sorted_dataset(i)
-        selectionsort_sorted_ops_list.append(selectionSort(sorted_lists[j], i)[1])
-        insertionsort_sorted_ops_list.append(insertionSort(sorted_lists[j], i)[1])
+        selectionsort_sorted_basic_operation_count_list.append(selectionSort(sorted_lists[j], i)[1])
+        insertionsort_sorted_basic_operation_count_list.append(insertionSort(sorted_lists[j], i)[1])
 
         rsorted_lists[j] = load_rsorted_dataset(i)
-        selectionsort_rsorted_ops_list.append(selectionSort(rsorted_lists[j], i)[1])
-        insertionsort_rsorted_ops_list.append(insertionSort(rsorted_lists[j], i)[1])
+        selectionsort_rsorted_basic_operation_count_list.append(selectionSort(rsorted_lists[j], i)[1])
+        insertionsort_rsorted_basic_operation_count_list.append(insertionSort(rsorted_lists[j], i)[1])
         j+=1
 
     print("average-case cost:")
-    # print("selection: {}".format(selectionsort_avg_ops_list))#;print(selectionsort_avg_ops_list)
-    # print("insertion: {}".format(insertionsort_avg_ops_list))#;print(insertionsort_avg_ops_list)
+    # print("selection: {}".format(selectionsort_avg_basic_operation_count_list))#;print(selectionsort_avg_basic_operation_count_list)
+    # print("insertion: {}".format(insertionsort_avg_basic_operation_count_list))#;print(insertionsort_avg_basic_operation_count_list)
     # -- scatter for avg-case
     plt.title("Average-Case")
     plt.xlabel("size n")
     plt.ylabel("operations")
-    plt.scatter(n_range, selectionsort_avg_ops_list, c=(1, 0, 0), alpha=.5, marker="<",label = "selection")
-    plt.scatter(n_range, insertionsort_avg_ops_list, c=(0, 1, 0), alpha=1, marker="o", label="insertion") 
+    plt.scatter(n_range, selectionsort_avg_basic_operation_count_list, c=(1, 0, 0), alpha=.5, marker="<",label = "selection")
+    plt.scatter(n_range, insertionsort_avg_basic_operation_count_list, c=(0, 1, 0), alpha=1, marker="o", label="insertion") 
     plt.legend(loc='upper left', shadow=True, fontsize='x-large')
     plt.show()
     # ----
 
     print("\nbest-case cost:")
-    # print("selection: {}".format(selectionsort_sorted_ops_list))#;print(selectionsort_sorted_ops_list)
-    # print("insertion: {}".format(insertionsort_sorted_ops_list))#;print(insertionsort_sorted_ops_list)
+    # print("selection: {}".format(selectionsort_sorted_basic_operation_count_list))#;print(selectionsort_sorted_basic_operation_count_list)
+    # print("insertion: {}".format(insertionsort_sorted_basic_operation_count_list))#;print(insertionsort_sorted_basic_operation_count_list)
     # -- scatter for best-case
     plt.title("Best-Case")
     plt.xlabel("size n")
     plt.ylabel("operations")
-    plt.scatter(n_range, selectionsort_sorted_ops_list, c=(1, 0, 0), alpha=.5, marker="<",label = "selection")
-    plt.scatter(n_range, insertionsort_sorted_ops_list, c=(0, 1, 0), alpha=1, marker="o", label="insertion") 
+    plt.scatter(n_range, selectionsort_sorted_basic_operation_count_list, c=(1, 0, 0), alpha=.5, marker="<",label = "selection")
+    plt.scatter(n_range, insertionsort_sorted_basic_operation_count_list, c=(0, 1, 0), alpha=1, marker="o", label="insertion") 
     plt.legend(loc='upper left', shadow=True, fontsize='x-large')
     plt.show()
     # ----
 
     print("\nworst-case cost")
-    # print("selection: {}".format(selectionsort_rsorted_ops_list)) 
-    # print("insertion: {}".format(insertionsort_rsorted_ops_list)) 
+    # print("selection: {}".format(selectionsort_rsorted_basic_operation_count_list)) 
+    # print("insertion: {}".format(insertionsort_rsorted_basic_operation_count_list)) 
     # -- scatter for worst-case
     plt.title("Worst-Case")
     plt.xlabel("size n")
     plt.ylabel("operations")
-    plt.scatter(n_range, selectionsort_rsorted_ops_list, c=(1, 0, 0), alpha=.5, marker="<",label = "selection")
-    plt.scatter(n_range, insertionsort_rsorted_ops_list, c=(0, 1, 0), alpha=1, marker="o", label="insertion") 
+    plt.scatter(n_range, selectionsort_rsorted_basic_operation_count_list, c=(1, 0, 0), alpha=.5, marker="<",label = "selection")
+    plt.scatter(n_range, insertionsort_rsorted_basic_operation_count_list, c=(0, 1, 0), alpha=1, marker="o", label="insertion") 
     plt.legend(loc='upper left', shadow=True, fontsize='x-large')
     plt.show()
     # ----
@@ -217,7 +217,7 @@ while mode != 2:
             if task == 1:
                 k = int(input(" ----\nPlease enter a nonnegative integer, k: "))
                 print("fib(%d): %d" %(k, fib(k)[0] )) #; print(fib(k)[0])
-                print("euclidGCD(m, n) where m(fib(k+1)) is %d and n(fib(k)) is %d equals %d" %(fib(k+1)[0], fib(k)[0], euclidGCD(fib(k+1)[0], fib(k)[0])[0])) #; print(euclidGCD(fib(k+1)[0], fib(k)[0]))
+                print("euclid_GCD(m, n) where m(fib(k+1)) is %d and n(fib(k)) is %d equals %d" %(fib(k+1)[0], fib(k)[0], euclid_GCD(fib(k+1)[0], fib(k)[0])[0])) #; print(euclid_GCD(fib(k+1)[0], fib(k)[0]))
                 print("Task 1 Completed!")
             if task == 2:
                 a = int(input(" --\nPlease enter a value for a: "))
@@ -252,32 +252,32 @@ while mode != 2:
                 A_of_k= []
                 k = [2, 4, 6, 8, 10, 12, 14, 16, 18]     # Initialize a list containing values for k representing the x-axis.
                 for i in range(len(k)):         # Populate empty list with A(k) = phi^k... TODO::Need to adjust this value.
-                    A_of_k.append(euclidGCD(fib(k[i] + 1)[0], fib(k[i])[0])[1])
+                    A_of_k.append(euclid_GCD(fib(k[i] + 1)[0], fib(k[i])[0])[1])
                     '''
                 k_range = list(range(0, 25))
-                fib_ops_list = []
+                fib_basic_operation_count_list = []
                 list_of_fibs = []
                 for i in range(0,25):
-                    fib_ops_list.append(fib(i)[1])
+                    fib_basic_operation_count_list.append(fib(i)[1])
                     list_of_fibs.append(fib(i)[0])
                 # Plot
-                plt.scatter(k_range, fib_ops_list, s = np.pi * 35, c = (1, 0, 0), alpha = 1, marker="o")
+                plt.scatter(k_range, fib_basic_operation_count_list, s = np.pi * 35, c = (1, 0, 0), alpha = 1, marker="o")
                 plt.title("Fibonacci Sequence")
                 plt.xlabel("Input Size K")
                 plt.ylabel("Number of Operations")
                 plt.show()
 
                 #ecluid
-                gcd_ops_list = []
+                gcd_basic_operation_count_list = []
                 i = 0
                 while i < len(list_of_fibs)-1:
-                    gcd_ops_list.append(euclidGCD(list_of_fibs[i], list_of_fibs[i+1])[1])
+                    gcd_basic_operation_count_list.append(euclid_GCD(list_of_fibs[i], list_of_fibs[i+1])[1])
                     i+=1
-                print(len(gcd_ops_list))
+                print(len(gcd_basic_operation_count_list))
                 print(len)
                 # Plot
-                euclid_range = list(range(0, len(gcd_ops_list)))
-                plt.scatter(euclid_range, gcd_ops_list, s = np.pi * 35, c = (1, 0, 0), alpha = 1, marker="o")
+                euclid_range = list(range(0, len(gcd_basic_operation_count_list)))
+                plt.scatter(euclid_range, gcd_basic_operation_count_list, s = np.pi * 35, c = (1, 0, 0), alpha = 1, marker="o")
                 plt.title("Euclids algorithm asymptotic complexity".title())
                 plt.xlabel("Input Size N")
                 plt.ylabel("Number of Operations")
