@@ -86,15 +86,15 @@ def exp2(a, n):
 - ***Time Complexity:*** *Θ(log n)*
 - ***Proof:***
     - Since the basic operation is not activated on M(1), we rely on M(1) = 0 for solving our recurrence relation.
-    - Let n = 2^k such that 2^k / 2 = 2^(k-1).
-    - M(2^k)  = M(2^(k-1)) + 1
-    -         = [M(2^(k-2)) + 1] + 1
-    -         = [M(2(k-3)) + 1] + 2
-    -         = M(2^(k-3)) + 3
+    - Let n = 2<sup>k</sup> such that 2<sup>k</sup> / 2 = 2<sup>k - 1</sup>.
+    - M(2<sup>k</sup>) = M(2<sup>k - 1</sup>)) + 1
+        - = [M(2<sup>k - 2</sup>) + 1] + 1
+        - = [M(2<sup>k - 3</sup>) + 1] + 2
+        - = M(2<sup>k - 3</sup>) + 3
     - Given the pattern, we assume the i'th instance of this relation can be expressed as follows:
-    - M(2^k)  = M(2^(k-i)) + i where i = k
-    -         = M(1) + k
-    - M(2^k)  = k
+    - M(2^k) = M(2<sup>k - i</sup>) + i where i = k
+        - = M(1) + k
+    - M(2<sup>k</sup>)  = k
     - M(n)    = log n exists in Θ(n) -- Θ(2<sup>b</sup>)
 """
 
