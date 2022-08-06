@@ -85,6 +85,8 @@ def exp2(a, n):
 - ***Recurrenc Relation:*** *M(n) = M(n/2) + 1*
 - ***Time Complexity:*** *Θ(log n)*
 - ***Proof:***
+* Hello
+* Hello 1
     Since the basic operation is not activated on M(1), we rely on M(1) = 0 for solving our recurrence relation.
     Let n = 2^k such that 2^k / 2 = 2^(k-1).
     M(2^k)  = M(2^(k-1)) + 1
