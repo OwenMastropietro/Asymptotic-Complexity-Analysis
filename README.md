@@ -65,9 +65,28 @@ def exp1(a, n):
         val, basic_operation_count = exp1(a, n-1)
         return a * val, basic_operation_count + 1
 ```
+- ***Basic operation:*** *Multiplication*
 - ***Recurrence Relation:*** *M(n) = M(n-1) + 1* [^1]
 - ***Time Complexity:*** *Θ(n) ==> Θ(2<sup>b</sup>)*
-- ***TODO:*** *show work for solving recurrence relation*
+- ***Proof:*** 
+    Note that 'M(n-1)' represents the number of basic operations in computing exp_1(a, n-1). 
+    Note that '+ 1' represents the additional basic operation/multiplication in computing a * exp_1(a, n-1). 
+    Since the basic operation is not activated on M(1), we rely on M(1) = 0 for solving our recurrence relation. 
+    M(n) = M(n - 1) + 1 
+        = [M(n - 2) + 1] + 1 
+        = [M(n - 3) + 1] + 2 
+        = M(n - 3) + 3 
+    
+    Given the pattern, we assume the i'th instance of this relation can be expressed as follows:
+    
+    M(n) = M(n - i) + i where i = n - 1
+    
+        = M(1) + n - 1
+    
+        = n - 1
+    
+    M(n) = n - 1 exists in Θ(n) -- Θ(2<sup>b</sup>)
+    
 
 ***Technique 2: Decrease by Constant Factor***
 ```python
@@ -92,11 +111,10 @@ def exp2(a, n):
         - = [M(2<sup>k - 3</sup>) + 1] + 2
         - = M(2<sup>k - 3</sup>) + 3
     - Given the pattern, we assume the i'th instance of this relation can be expressed as follows:
-    - M(2^k) = M(2<sup>k - i</sup>) + i where i = k
+    - M(2<sup>k</sup>) = M(2<sup>k - i</sup>) + i where i = k
         - = M(1) + k
     - M(2<sup>k</sup>)  = k
     - M(n)    = log n exists in Θ(n) -- Θ(2<sup>b</sup>)
-"""
 
 ***Technique 3: Divide and Conquer***
 ```python
