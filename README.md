@@ -109,7 +109,7 @@ def exp2(a, n):
     - M(2<sup>k</sup>) = M(2<sup>k - i</sup>) + i where i = k
         - = M(1) + k
     - M(2<sup>k</sup>)  = k
-    - M(n)    = log n exists in Θ(n) -- Θ(2<sup>b</sup>)
+    - M(n)    = log n exists in Θ(log n) -- Θ(b) [^2]
 
 ***Technique 3: Divide and Conquer***
 ```python
@@ -123,8 +123,8 @@ def exp3(a, n):
         val, basic_operation_count = exp3(a, (n-1)/2)         # According to the project page, (n-1)/2. However, everywhere online uses n/2 and it does not seem to effect the result.
         return a * val * val, basic_operation_count + 2   # Increment basic_operation_count by two due to two multiplications of a * val * val.
 ```
-- ***Recurrence Relation:*** *M(n) = M(n/2) + 1*
-- ***Time Complexity:*** *Θ(log n) ==> Θ(n log n)?*
+- ***Recurrence Relation:*** *here*
+- ***Time Complexity:*** *Θ(n)* [^3]
 - ***Proof:***
 
 ### Task 3:
@@ -180,3 +180,4 @@ def selection_sort(arr_in, n):
 
 [^1]: Decrease by One Exponentiation The recurrence relation A(n-1) + 1 is built on A(n-1) representing the number of basic operations in computing exp_1(a, n-1) and '+ 1' representing the additional basic operation in computing a x exp1(a, n-1).
 [^2]: As per the textbook, on page 133, we are reducing the problem size by about half at the expense of one or two multiplications. This suggests that this algorithm is in Θ(log n).
+[^3]: Not O(n log n) or O(log n)... More Operations than Decrease by Constant Factor due to recursive calls having to do work. exp(a, n) * exp(a, n) vs exp(a, n)<sup>2</sup>.
