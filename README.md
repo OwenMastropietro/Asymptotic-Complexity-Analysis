@@ -113,7 +113,7 @@ M(n)    =   M(n/2) + 1
 ### Task 3:
 
 **Insertion Sort**
-*Complexity Description*
+- *Complexity Description*
 ```python
 def insertion_sort(arr_in, n):
     basic_operation_count = 0
@@ -131,7 +131,7 @@ def insertion_sort(arr_in, n):
 ```
 
 **Selection Sort**
-*Complexity Description*
+- *Complexity Description*
 ```python
 def selection_sort(arr_in, n):
     basic_operation_count = 0
