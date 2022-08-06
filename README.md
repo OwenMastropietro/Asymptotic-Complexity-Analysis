@@ -37,6 +37,8 @@ def euclid_GCD(m, n):
         return val, basic_operation_count + 1
 ```
 - ***Time Complexity:*** *Θ(n) --> Θ(2<sup>b</sup>)*
+- ***Asymptotic Complexity Scatter Plot:***
+![scatterplot-gcd](images/scatterplot-gcd.png)
 
 **Implement an algorithm, that returns the k'th number in the fibonacci sequence**
 ```python
@@ -49,6 +51,8 @@ def fib(k):
         return val_1 + val_2, basic_ops_1 + basic_ops_2 + 1
 ```
 - ***Time Complexity:*** *Θ(phi<sup>k</sup>) or Θ(phi<sup>2<sup>b</sup></sup>)*
+- ***Asymptotic Complexity Scatter Plot:***
+![scatterplot-fib](images/scatterplot-fib.png)
 
 **Explore GCD(fib(k+1), fib(k))**
 - Add Description / What did I find?
@@ -172,11 +176,11 @@ def selection_sort(arr_in, n):
     return arr, basic_operation_count
 ```
 - ***Recurrence Relation:*** *here*
-- ***Time Complexity:*** *here*
+- ***Time Complexity:*** *Θ(n<sup>2</sup>)*
 
 ## Useful Resources
-- [alt text](link)
-- [alt text](link)
+- [TODO](link)
+- [TODO](link)
 
 [^1]: Decrease by One Exponentiation The recurrence relation A(n-1) + 1 is built on A(n-1) representing the number of basic operations in computing exp_1(a, n-1) and '+ 1' representing the additional basic operation in computing a x exp1(a, n-1).
 [^2]: As per the textbook, on page 133, we are reducing the problem size by about half at the expense of one or two multiplications. This suggests that this algorithm is in Θ(log n).
