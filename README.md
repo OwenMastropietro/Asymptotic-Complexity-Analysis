@@ -36,7 +36,7 @@ def euclid_GCD(m, n):
         val, basic_operation_count = euclidGCD(n, m % n)
         return val, basic_operation_count + 1
 ```
-- ***Time Complexity:*** *Θ(n) --> Θ(2^b)*
+- ***Time Complexity:*** *Θ(n) --> Θ(2<sup>b</sup>)*
 
 **Implement an algorithm, that returns the k'th number in the fibonacci sequence**
 ```python
@@ -48,7 +48,7 @@ def fib(k):
         val_2, basic_ops_2 = fib(k-2)
         return val_1 + val_2, basic_ops_1 + basic_ops_2 + 1
 ```
-- ***Time Complexity:*** *Θ(phi^k) or Θ(phi^2^b)*
+- ***Time Complexity:*** *Θ(phi<sup>k</sup>) or Θ(phi<sup>2<sup>b</sup></sup>)*
 
 **Explore GCD(fib(k+1), fib(k))**
 - Add Description / What did I find?
@@ -66,7 +66,7 @@ def exp1(a, n):
         return a * val, basic_operation_count + 1
 ```
 - ***Basic operation:*** *Multiplication*
-- ***Recurrence Relation:*** *M(n) = M(n-1) + 1* [^1]
+- ***Recurrence Relation:*** *M(n) = M(n - 1) + 1* [^1]
 - ***Time Complexity:*** *Θ(n) ==> Θ(2<sup>b</sup>)*
 - ***Proof:***
     - Note that 'M(n-1)' represents the number of basic operations in computing exp_1(a, n-1).
