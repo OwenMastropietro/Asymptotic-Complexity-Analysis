@@ -38,7 +38,7 @@ def euclid_GCD(m, n):
 ```
 - ***Time Complexity:*** *Θ(n) --> Θ(2<sup>b</sup>)*
 - ***Asymptotic Complexity Scatter Plot:***
-    - *The scatter plot we have created to display the asymptotic complexities of our implementations of Euclid's algorithm using mathplotlib*
+    - *The scatter plot we have created to display the asymptotic complexity of our implementation of Euclid's algorithm using mathplotlib*
 ![scatterplot-gcd](images/scatterplot-gcd.png)
 
 **Implement an algorithm, that returns the k'th number in the fibonacci sequence**
@@ -53,7 +53,7 @@ def fib(k):
 ```
 - ***Time Complexity:*** *Θ(phi<sup>k</sup>) or Θ(phi<sup>2<sup>b</sup></sup>)*
 - ***Asymptotic Complexity Scatter Plot:***
-    - *The scatter plot we have created to display the asymptotic complexities of our implementation of the algorithm using mathplotlib*
+    - *The scatter plot we have created to display the asymptotic complexity of our implementation of the algorithm using mathplotlib*
 ![scatterplot-fib](images/scatterplot-fib.png)
 
 **Explore GCD(fib(k+1), fib(k))**
@@ -75,7 +75,7 @@ def exp1(a, n):
 - ***Recurrence Relation:*** *M(n) = M(n - 1) + 1* [^1]
 - ***Time Complexity:*** *Θ(n) ==> Θ(2<sup>b</sup>)*
 - ***Proof:***
-    - Note that 'M(n-1)' represents the number of basic operations in computing exp_1(a, n-1).
+    - Note that 'M(n - 1)' represents the number of basic operations in computing exp_1(a, n-1).
     - Note that '+ 1' represents the additional basic operation/multiplication in computing a * exp_1(a, n-1).
     - Since the basic operation is not activated on M(1), we rely on M(1) = 0 for solving our recurrence relation.
     - M(n) = M(n - 1) + 1
@@ -158,7 +158,7 @@ def insertion_sort(arr_in, n):
 - ***Recurrence Relation:***
     - *Best: C(n) = n - 1*
     - *Average: C(n) = n(n - 1) / 2*
-    - *Worst: C(n) = n(n-1) / 2*
+    - *Worst: C(n) = n(n - 1) / 2*
 - ***Time Complexity:***
     - *Best: O(n)*
     - *Average: O(n<sup>2</sup>)*
