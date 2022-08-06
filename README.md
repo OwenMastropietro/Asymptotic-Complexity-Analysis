@@ -38,6 +38,7 @@ def euclid_GCD(m, n):
 ```
 - ***Time Complexity:*** *Θ(n) --> Θ(2<sup>b</sup>)*
 - ***Asymptotic Complexity Scatter Plot:***
+    - *The scatter plot we have created to display the asymptotic complexities of our implementations of Euclid's algorithm using mathplotlib*
 ![scatterplot-gcd](images/scatterplot-gcd.png)
 
 **Implement an algorithm, that returns the k'th number in the fibonacci sequence**
@@ -52,10 +53,11 @@ def fib(k):
 ```
 - ***Time Complexity:*** *Θ(phi<sup>k</sup>) or Θ(phi<sup>2<sup>b</sup></sup>)*
 - ***Asymptotic Complexity Scatter Plot:***
+    - *The scatter plot we have created to display the asymptotic complexities of our implementation of the algorithm using mathplotlib*
 ![scatterplot-fib](images/scatterplot-fib.png)
 
 **Explore GCD(fib(k+1), fib(k))**
-- Add Description / What did I find?
+- TODO
 
 ### Task 2:
 **Exponentiation Algorithms for computing a<sup>x</sup>.**
@@ -130,6 +132,11 @@ def exp3(a, n):
 - ***Recurrence Relation:*** *here*
 - ***Time Complexity:*** *Θ(n)* [^3]
 - ***Proof:***
+    - TODO
+
+- ***Asymptotic Complexity Scatter Plot:***
+    - *The scatter plot we have created to display the asymptotic complexities of our implementations of the algorithms using mathplotlib*
+![scatterplot-exp](images/scatterplot-exp.png)
 
 ### Task 3:
 **Insertion Sort**
@@ -177,6 +184,10 @@ def selection_sort(arr_in, n):
 ```
 - ***Recurrence Relation:*** *here*
 - ***Time Complexity:*** *Θ(n<sup>2</sup>)*
+
+- ***Asymptotic Complexity Scatter Plot:***
+    - *The scatter plot we have created to display the asymptotic complexities of our implementations of the algorithms using mathplotlib*
+![TODO]()
 
 ## Useful Resources
 - [TODO](link)
