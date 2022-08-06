@@ -15,6 +15,7 @@
 ***CLI***
 1. `$ python3 project01a.py`
 2. Follow the prompts for entering significant data.
+
 ***PyCharm***
 1. Under "configurations", set script path to the python "project01a" file.
 2. Select "run" located in the upper-right corner of the application.
