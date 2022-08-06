@@ -48,7 +48,7 @@ def fib(k):
         val_2, basic_ops_2 = fib(k-2)
         return val_1 + val_2, basic_ops_1 + basic_ops_2 + 1
 ```
-***Time Complexity:*** *Θ(phi^k) or Θ(phi^2^b)*
+- ***Time Complexity:*** *Θ(phi^k) or Θ(phi^2^b)*
 
 **Explore GCD(fib(k+1), fib(k))**
 - Add Description / What did I find?
@@ -118,8 +118,14 @@ def insertion_sort(arr_in, n):
         i = i + 1
     return arr, basic_operation_count
 ```
-- ***Recurrence Relation:*** *here*
-- ***Time Complexity:*** *here*
+- ***Recurrence Relation:***
+    - *Best: C(n) = n - 1*
+    - *Average: C(n) = n(n - 1) \over 2*
+    - *Worst: C(n) = n(n-1) \over 2*
+- ***Time Complexity:***
+    - *Best: O(n)*
+    - *Average: O(n<sup>2</sup>)*
+    - *Worst: O(n<sup>2</sup>)*
 
 **Selection Sort**
 ```python
