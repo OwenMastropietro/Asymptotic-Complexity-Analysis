@@ -97,7 +97,7 @@ def exp3(a, n):
         val, basic_operation_count = exp3(a, (n-1)/2)         # According to the project page, (n-1)/2. However, everywhere online uses n/2 and it does not seem to effect the result.
         return a * val * val, basic_operation_count + 2   # Increment basic_operation_count by two due to two multiplications of a * val * val.
 ```
-- *Recurrence Relation: M(n) = M(n/2) + 1*
+- **Recurrence Relation:** *M(n) = M(n/2) + 1*
 - *Time Complexity: Θ(log n) ==> Θ(n log n)?*
 
 ### Task 3:
