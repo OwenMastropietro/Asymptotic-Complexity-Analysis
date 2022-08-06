@@ -53,9 +53,9 @@ def fib(k):
 
 ### Task 2:
 
-**Exponentiation Algorithms for computing a<sup>x</sup>**
+**Exponentiation Algorithms for computing a<sup>x</sup>.**
 
-**Decrease by One**
+***Technique 1: Decrease by One***
 ```python
 def exp1(a, n):
     if n == 0: return 1, 0     # Note: a^0 = 1 for all values of a.
@@ -73,7 +73,7 @@ Therefore, exp1 is in Θ(n) Θ(2^b).
 """
 ```
 
-**Decrease by Constant Factor**
+***Technique 2: Decrease by Constant Factor***
 ```python
 def exp2(a, n):
     if n == 0: return 1, 0      # Note: a^0 = 1 for all values of a.
@@ -90,7 +90,7 @@ This suggests that this algorithm is in Θ(log n).
 """
 ```
 
-**Divide and Conquer**
+***Technique 3: Divide and Conquer***
 ```python
 def exp3(a, n):
     if n == 0: return 1, 0              # Note: a^0 = 1 for all values of a.
@@ -113,6 +113,7 @@ M(n)    =   M(n/2) + 1
 ### Task 3:
 
 **Insertion Sort**
+*Complexity Description*
 ```python
 def insertion_sort(arr_in, n):
     basic_operation_count = 0
@@ -130,7 +131,7 @@ def insertion_sort(arr_in, n):
 ```
 
 **Selection Sort**
-
+*Complexity Description*
 ```python
 def selection_sort(arr_in, n):
     basic_operation_count = 0
@@ -148,3 +149,7 @@ def selection_sort(arr_in, n):
         i = i + 1
     return arr, basic_operation_count
 ```
+
+## Useful Resources
+- [alt text](link)
+- [alt text](link)
